@@ -1,0 +1,29 @@
+spring:
+  profiles.active: development
+
+---
+spring:
+  profiles: development
+  
+  datasource:    
+    url: jdbc:mysql://210.16.195.126:3306/wiki?serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    username: wiki
+    password: test123
+    validation-query: SELECT 1 FROM dual    
+  jpa:    
+    show-sql: true
+    hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+
+
+
+
+
+    
+    
+ 
+    

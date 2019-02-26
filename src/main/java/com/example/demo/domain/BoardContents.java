@@ -2,15 +2,11 @@ package com.example.demo.domain;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,15 +22,8 @@ public class BoardContents {
 
 	private String contents;
 
-	@Column(name = "REG_DATE")
+	@Column(name = "REG_DATE", insertable = false)
 	private Date regDate;
-
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "FK_IDX", insertable = true, nullable = false, updatable =
-	 * false) private Board board;
-	 */
 
 	public Integer getIdx() {
 		return idx;

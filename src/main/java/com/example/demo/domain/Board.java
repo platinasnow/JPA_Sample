@@ -1,7 +1,6 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.example.demo.dto.SearchInfo;
 
 @Entity
 @Table(name = "TEST_BOARD")
-public class Board implements Serializable {
+public class Board extends SearchInfo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,11 +31,16 @@ public class Board implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idx;
 	
+	@NotNull
+	@NotEmpty(message = "빈 값을 넣을 수 없습니다.")
 	private String title;
 	
+	@NotNull
+	@Length(max= 100)
+	@NotEmpty(message = "빈 값을 넣을 수 없습니다.")
 	private String contents;
 	
-	@Column(name = "REG_DATE")
+	@Column(name = "REG_DATE", insertable = false)
 	private Date regDate;
 	
 	@Column(name = "REG_ID")
@@ -42,16 +52,9 @@ public class Board implements Serializable {
 	@Column(name = "UPT_ID")
 	private String uptId;
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "FK_IDX", referencedColumnName = "IDX")
 	private List<BoardContents> boardContentsList;
-	
-	public void addBoardContents(BoardContents boardContents) {
-		if(boardContentsList == null) {
-			boardContentsList = new ArrayList<BoardContents>();
-		}
-		boardContentsList.add(boardContents);
-	}
 
 	public Integer getIdx() {
 		return idx;

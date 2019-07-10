@@ -30,25 +30,25 @@ public class Board extends SearchInfo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idx;
-	
+
 	@NotNull
 	@NotEmpty(message = "빈 값을 넣을 수 없습니다.")
 	private String title;
-	
+
 	@NotNull
-	@Length(max= 100)
+	@Length(max = 100)
 	@NotEmpty(message = "빈 값을 넣을 수 없습니다.")
 	private String contents;
-	
+
 	@Column(name = "REG_DATE", insertable = false)
 	private Date regDate;
-	
+
 	@Column(name = "REG_ID")
 	private String regId;
-	
+
 	@Column(name = "UPT_DATE")
 	private Date uptDate;
-	
+
 	@Column(name = "UPT_ID")
 	private String uptId;
 
@@ -125,7 +125,5 @@ public class Board extends SearchInfo implements Serializable {
 	public void setBoardContentsList(List<BoardContents> boardContentsList) {
 		this.boardContentsList = boardContentsList;
 	}
-	
-	
 
 }

@@ -27,9 +27,9 @@
 						<c:forEach items="${list.content }" var="vList" varStatus="count">
 							<tr>
 								<th scope="row">${list.totalElements - (pagination.page - 1) * pagination.itemPerPage - count.count + 1 }</th>
-								<td><a href="view?idx=${vList.idx}">${vList.title }</a></td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vList.regDate }"/> </td>
-								<td>${vList.regId }</td>
+								<td><a href="view?idx=${vList[0].idx}">${vList[0].title }</a> (${vList[1]})</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vList[0].regDate }"/> </td>
+								<td>${vList[0].regId }</td>
 							</tr>
 						</c:forEach>
 					</tbody>

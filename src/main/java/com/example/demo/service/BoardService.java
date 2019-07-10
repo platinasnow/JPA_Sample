@@ -1,9 +1,5 @@
 package com.example.demo.service;
 
-import java.util.List;
-
-import javax.persistence.PersistenceException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.example.demo.domain.Board;
-import com.example.demo.domain.BoardContents;
-import com.example.demo.repository.BoardContentsRepository;
 import com.example.demo.repository.BoardRepository;
 
 @Service
@@ -22,8 +16,6 @@ public class BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
-	@Autowired
-	private BoardContentsRepository boardContentsRepository;
 
 	public Page<Board> findAll(Board board) {
 		Page<Board> list = null;
@@ -62,8 +54,6 @@ public class BoardService {
 		Board item = boardRepository.findById(board.getIdx()).get();
 		if (item == null)
 			return null;
-		List<BoardContents> list = boardContentsRepository.findByFkIdx(board.getIdx());
-		item.setBoardContentsList(list);
 		return item;
 
 	}
